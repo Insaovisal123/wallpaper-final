@@ -16,12 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.finalandroid.ui.main.SectionsPagerAdapter;
@@ -31,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements onitemClickListerner {
+public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ImageAdapter imageAdapter;
@@ -46,19 +41,11 @@ public class MainActivity extends AppCompatActivity implements onitemClickLister
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = findViewById(R.id.fab);
 
         recyclerView = findViewById(R.id.recyclerView);
         imageAdapter = new ImageAdapter(imageList);
         loadList();
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action G'mate ", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
     private void loadList() {
         String url = "https://my-json-server.typicode.com/Insaovisal123/image-api/images";
@@ -85,11 +72,5 @@ public class MainActivity extends AppCompatActivity implements onitemClickLister
         MyApplication.getInstance().addToRequestQueue(request);
     }
 
-    @Override
-    public void onClick(int position) {
-        Toast.makeText(this, "Position "+position, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, FullImageActivity.class );
-        intent.putExtra("position",position);
-        startActivity(intent);
-    }
+
 }
